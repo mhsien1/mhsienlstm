@@ -9,7 +9,6 @@ import tensorflow as tf
 import datetime
 from tensorflow.python.lib.io import file_io
 import argparse
-from google.cloud import storage
 
 def main(args):
 
