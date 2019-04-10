@@ -21,7 +21,7 @@ def main(args):
     
         currentDT = datetime.datetime.now()
         print (str(currentDT))
-        df = pd.read_csv('gs://michaelhsientest/cleanlyrics3.csv')
+        df = pd.read_csv(args.train_files)
         df.columns = ["index", 'text', 'genre']
         data = df[['text', 'genre']]
         
