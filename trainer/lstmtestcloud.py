@@ -9,6 +9,16 @@ import tensorflow as tf
 import datetime
 from tensorflow.python.lib.io import file_io
 import argparse
+from tensorflow.python.lib.io import file_io
+from pandas.compat import StringIO
+import pandas as pd
+
+# read the input data
+def read_data(gcs_path):
+   print('downloading csv file from', gcs_path)     
+   file_stream = file_io.FileIO(gcs_path, mode='r')
+   data = pd.read_csv(StringIO(file_stream.read()))
+   return data
 
 def main(args):
 
@@ -20,7 +30,7 @@ def main(args):
     
         currentDT = datetime.datetime.now()
         print (str(currentDT))
-        df = pd.read_csv(pd.read_csv('gs://mhsiendata/data/cleanlyrics3.csv'))
+        df = df = read_data('gs://mhsiendata/data/cleanlyrics3.csv')
         df.columns = ["index", 'text', 'genre']
         data = df[['text', 'genre']]
         
